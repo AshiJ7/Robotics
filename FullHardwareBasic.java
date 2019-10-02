@@ -94,11 +94,14 @@ public class Hardware {
 
         frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
         backRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        intakeLeft.setDirection(DcMotor.Direction.REVERSE);
 
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(ZeroPowerBehavior.BRAKE);
+        intakeRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -124,10 +127,14 @@ public class Hardware {
         return heading;
     }
     
-    public void intake(IntakeDirection direction) {
+    public void intake(IntakeDirection direction, double motorPower) {
         switch (direction) {
         case in:
-        intakeRight
+        intakeRight.setPower(1);
+        intakeLeft.setPower(-1);
+        break;
+    }
+    }
         
 
     public int getPitch() {
